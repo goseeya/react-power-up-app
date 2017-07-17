@@ -1,5 +1,6 @@
 "use strict";
 
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -7,6 +8,10 @@ const low = require('lowdb');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const socketIo = require('socket.io');
+const cors = require('cors')
+const app = express();
+
+app.use(cors());
 
 /** DATABASE SETUP **/
 const DB = low('db.json');
@@ -15,7 +20,7 @@ DB._.mixin(require('lodash-id'));
 
 DB.defaults(DEFAULT_DATA).write();
 
-const app = express();
+app.use(cors());
 const server = require('http').Server(app);
 const PORT = process.env.PORT || 3001;
 const APP_SECRET = 'IHopeThisIsSecureEnough';

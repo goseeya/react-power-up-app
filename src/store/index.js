@@ -1,5 +1,6 @@
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {rootReducer} from "../reducers/index";
+ import thunk from 'redux-thunk'
 
 export const initialState = {
     "cards": [
@@ -34,25 +35,13 @@ export const initialState = {
             "user": null
         }
     ],
-    "lists": [
-        {
-            "id": "d840f829-3ee8-446a-99d9-8c86dea42366",
-            "title": "To do"
-        },
-        {
-            "id": "493c84c0-21b8-49c9-9861-6aa4b5729f30",
-            "title": "Doing"
-        },
-        {
-            "id": "12c1ee3d-4199-46dc-aaa8-b2176dc01e9e",
-            "title": "Done"
-        }
-    ],
+    "lists": [],
     "users": []
 };
 
 export const store = createStore(
     rootReducer,
     initialState,
+    applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import List from './List/List';
 import './styles.css';
-import {renameList} from "../../actions/lists";
+import {renameList, fetchList, updateList} from "../../actions/lists";
 import AddCard from "./AddCard/AddCard";
 import {createCard} from "../../actions/card";
 
@@ -18,6 +18,13 @@ class Board extends React.Component {
 
     handleAddCard(listId, title) {
         this.props.dispatch(createCard(listId, title));
+    }
+
+    componentDidMount() {
+      this.props.dispatch(fetchList())
+    }
+    componentDidUpdate() {
+      this.props.dispatch(updateList())
     }
 
     render() {

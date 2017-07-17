@@ -1,4 +1,5 @@
-import {LISTS_RENAME} from "../actions/lists";
+import {LISTS_RENAME, FETCH_LIST, UPDATE_LIST} from "../actions/lists";
+import axios from 'axios';
 
 export default function ListsReducer(state = [], action) {
     switch (action.type) {
@@ -10,7 +11,10 @@ export default function ListsReducer(state = [], action) {
                     return list;
                 }
             });
-
+            case FETCH_LIST:
+              return action.payload
+            case UPDATE_LIST:
+              return action.payload
         default:
             return state;
     }
